@@ -1,0 +1,24 @@
+@page "/calendar"
+@inherits AppComponentBase
+
+<PageTitle>@Localizer[nameof(AppStrings.CalendarTitle)]</PageTitle>
+
+<div class="page-container">
+    <div class="page-content">
+        <div class="full-calendar" @ref=CalendarRef>
+        </div>
+    </div>
+</div>
+<BitModal @bind-IsOpen="IsOpen">
+    <div class="calender-event-modal-header">
+        <span>Enter Your Title's Event</span>
+        <BitIconButton OnClick=@(() => IsOpen = false) IconName="@BitIconName.ChromeClose" Title="Close" />
+    </div>
+    <div class="calender-event-modal-body">
+        <BitTextField @bind-Value="EventTitle" Label="EventTitle" Placeholder="Enter a Title" />
+    </div>
+    <div class="calender-event-modal-footer">
+        <BitButton ButtonStyle="BitButtonStyle.Standard" OnClick=@(() => IsOpen = false)>Cancel</BitButton>
+        <BitButton OnClick=@setEvent>Set Event</BitButton>
+    </div>
+</BitModal>
